@@ -8,7 +8,6 @@
 
 .container {
   display: grid;
-  grid-template-columns: 3% 1fr 3% 1.61803fr 3%; 
   background-color: #ED2939; 
 }
 
@@ -22,3 +21,6 @@
   grid-column-end: 5;
 }
 
+.font--pair {
+  grid-template-columns: 3% 1fr 3% 1.61803fr 3%;
+}
