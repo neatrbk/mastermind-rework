@@ -1,4 +1,5 @@
 let dataBuilder = (function() {
+  let buildData = {};
 
   function orderFonts(fonts) {
     let curDisplayNum = 0;
@@ -17,13 +18,13 @@ let dataBuilder = (function() {
 
   function randomizeArray(ar) {
 
-    //let newAr = ar.splice();
-    for(let i = ar.length - 1; i > 0; i --) {
+    let newAr = ar.slice();
+    for(let i = newAr.length - 1; i > 0; i --) {
       let j = Math.floor(Math.random() * (i + 1));
-      //[newAr[i], newAr[j]] = [ar[j], ar[i]];
-      [ar[i], ar[j]] = [ar[j], ar[i]];
+      [newAr[i], newAr[j]] = [newAr[j], newAr[i]];
+      //[ar[i], ar[j]] = [ar[j], ar[i]];
     }
-    //return newAr;
+    return newAr;
   }
 
 
@@ -47,13 +48,16 @@ let dataBuilder = (function() {
   }
 
   function createFontData(fonts) {
-    fontsR = randomizeArray(fonts);
-    orderFonts(fonts);
-    setBodyData(fonts);
-    buildPairData(fonts);
-    fonts.prototype.randomize = randomizeArray.call(fonts);
-
-    return fonts
+    let fontsR = randomizeArray(fonts);
+    orderFonts(fontsR);
+    setBodyData(fontsR);
+    buildPairData(fontsR);
+    buildData.fonts = fontsR; 
+    buildData.randomize = function() {
+      this.fonts = randomizeArray(this.fonts);
+      orderFonts(this.fonts);
+    };
+    return buildData;
   }
 
   
@@ -69,7 +73,7 @@ let dataBuilder = (function() {
   }
 
   return {
-    create: createFontData,
-  }
+   createFontData 
+  };
    
 })();

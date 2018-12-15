@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-body {
-  height: 100%;
-}
-
 .container {
   display: grid;
   grid-template-columns: 1fr 1.61803fr;

@@ -12,4 +12,12 @@ const fonts = [
     {fontFamily: "Arvo", backupFont: "serif", isDisplay: false, order: null, body: null},
     ];
 
-let fontData = dataBuilder.create(fonts);
+let fontData = dataBuilder.createFontData(fonts);
+
+async function testRandomization() {
+  await console.log(fontData);
+  await fontData.randomize();
+  console.log(fontData);
+} 
+
+testRandomization();
